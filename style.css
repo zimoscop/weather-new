@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+section {
+  padding: 40px 0 40px;
+  background: linear-gradient(360deg, #292e49 0%, #536976 100%);
+  background-color: rgba(33, 18, 111, 0.5);
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.5);
+  height: 34px;
+  width: 110px;
+  margin: 0 auto;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 326px;
+  height: 950px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
+}
+
+span {
+  font-size: 72px;
+  font-weight: 700;
+}
+
+.info__city {
+  width: 200px;
+  font-size: 24px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.city__change {
+  height: 28px;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 auto;
+  margin-top: 36px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.base__test {
+  height: 36px;
+  font-size: 21px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 auto;
+}
+
+.find__city {
+  display: block;
+  flex-direction: column;
+  margin: 0 auto;
+  display: none;
+}
+
+input:active,
+:hover,
+:focus {
+  outline: 0;
+  outline-offset: 0;
+}
+
+input {
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  background-color: inherit;
+  border: none;
+  display: block;
+  margin: 0 auto;
+}
+
+::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.line {
+  background-color: rgba(255, 255, 255, 0.75);
+  height: 2px;
+  width: 326px;
+  margin: 0 auto;
+  margin: 6px 0 36px;
+  border-radius: 10%;
+}
+
+button {
+  background-color: white;
+  color: rgba(76, 1, 224, 1);
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  height: 48px;
+  width: 140px;
+  margin: 0 auto;
+  display: block;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
