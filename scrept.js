@@ -7,9 +7,9 @@ const whatCity = document.querySelector(".info__city");
 const temperature = document.querySelector(".info__degrees");
 const input = document.querySelector("input");
 const btn = document.querySelector("button");
-
-window.addEventListener("load", () => {
-  const call = `http://api.weatherapi.com/v1/current.json?key=${API}&q=Moscow&aqi=yes`;
+const line = document.querySelector(".line");
+// отправляет запрос
+function makeFeth(call) {
   fetch(call)
     .then((response) => {
       return response.json();
@@ -20,49 +20,43 @@ window.addEventListener("load", () => {
       const condition = data.current.condition.text;
       temperature.textContent = `${temp} °C`;
       whatCity.textContent = `${condition} in ${city}`;
+    })
+    .catch((err) => {
+      btn.textContent = "Try again";
+      line.classList.remove(".list");
+      line.classList.add("text");
+      input.textContent = "Ooops. Something went wrong.";
     });
-});
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition((position) => {
-    let long = position.coords.longitude;
-    let lat = position.coords.latitude;
-    const call = `http://api.weatherapi.com/v1/current.json?key=${API}&q=${lat},${long}&aqi=yes`;
-    fetch(call)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        const city = data.location.name;
-        const temp = data.current.temp_c;
-        const condition = data.current.condition.text;
-        temperature.textContent = `${temp} °C`;
-        whatCity.textContent = `${condition} in ${city}`;
-      });
-  });
 }
+// при загрузке показывает погоду в Москве
+window.addEventListener("load", () => {
+  const call = `http://api.weatherapi.com/v1/current.json?key=${API}&q=Moscow&aqi=yes`;
+  makeFeth(call);
+});
+// при разрешении геолокации
+navigator.geolocation.getCurrentPosition((position) => {
+  let long = position.coords.longitude;
+  let lat = position.coords.latitude;
+  const call = `http://api.weatherapi.com/v1/current.json?key=${API}&q=${lat},${long}&aqi=yes`;
+  makeFeth(call);
+});
 
 // Убирает блок с температурой и открывает блок с поиском города
 changeCity.addEventListener("click", () => {
   degrees.style = "display: none;";
   cityFinder.style = "display: block;";
+  input.value = "";
+  input.textContent = "";
+  btn.textContent = "Find";
+  line.classList.add(".list");
+  line.classList.remove("text");
 });
 
-// Ищет погоду в другом городе ENG
+// Ищет погоду в другом городе
 btn.addEventListener("click", () => {
   const city = String(input.value);
   const call = `http://api.weatherapi.com/v1/current.json?key=${API}&q=${city}&aqi=yes`;
-  fetch(call)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const city = data.location.name;
-      const temp = data.current.temp_c;
-      const condition = data.current.condition.text;
-      temperature.textContent = `${temp} °C`;
-      whatCity.textContent = `${condition} in ${city}`;
-    });
+  makeFeth(call);
   degrees.style = "display: block;";
   cityFinder.style = "display: none;";
 });

@@ -110,6 +110,15 @@ input {
   border-radius: 10%;
 }
 
+.text {
+  background-color: inherit;
+  height: 15px;
+  font-size: 12px;
+  margin-bottom: 57px;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 auto;
+}
+
 button {
   background-color: white;
   color: rgba(76, 1, 224, 1);
