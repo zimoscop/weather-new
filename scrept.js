@@ -11,9 +11,14 @@ const line = document.querySelector(".line");
 // отправляет запрос
 function makeFeth(call) {
   fetch(call)
-    .then((response) => {
-      return response.json();
-    })
+    .then(
+      (response) => {
+        return response.json();
+      },
+      (error) => {
+        alert("Ooops. Something went wrong.");
+      }
+    )
     .then((data) => {
       const city = data.location.name;
       const temp = data.current.temp_c;
